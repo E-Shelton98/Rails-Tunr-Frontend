@@ -1,7 +1,7 @@
 import React from 'react';
-import {Route} from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import DisplaySongs from './components/DisplaySongs';
-import Form from './components/Form'
+import Form from './components/Form';
 import './App.css';
 
 function App() {
@@ -13,13 +13,14 @@ function App() {
 
 	//Empty Song Object for form
 	const emptySong = {
-		Title: '',
-		Artist: '',
-		Time: '',
+		name: '',
+		artist: '',
+    time: '',
+    favorite: false
 	};
 
-	///////////////////////////////////////////////////////////////////////////////
-	///////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////
 
 	//getSongs function to fetch songs from heroku backend.
 	const getSongs = () => {
@@ -33,13 +34,13 @@ function App() {
 		getSongs();
 	}, []);
 
-	///////////////////////////////////////////////////////////////////////////////
-	///////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////
 
 	//handleCreate Function for creating songs in playlist
 	const handleCreate = (newSong) => {
 		console.log(newSong);
-		fetch(url + '/song/', {
+		fetch(url + '/songs/', {
 			method: 'post',
 			headers: {
 				'Content-Type': 'application/json',

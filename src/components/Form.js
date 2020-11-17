@@ -5,7 +5,8 @@ const Form = (props) => {
 
 	//handleSubmit function to lift form input data to App.js
 	const handleSubmit = (event) => {
-		console.log('this is formData: ', formData);
+        event.preventDefault()
+        console.log('this is formData: ', formData);
 		//Submit to App's desired function
 		props.handleSubmit(formData);
 		//push back up to display section.
@@ -20,9 +21,7 @@ const Form = (props) => {
 	//Form return to generate on web-page.
 	return (
 		<form onSubmit={handleSubmit}>
-			<label id='name' for='name'>
-				Name
-			</label>
+			<label id='name'>Name</label>
 			<br />
 			<input
 				type='text'
@@ -32,9 +31,7 @@ const Form = (props) => {
 				onChange={handleChange}
 			/>
 			<br />
-			<label id='artist' for='artist'>
-				Artist
-			</label>
+			<label id='artist'>Artist</label>
 			<br />
 			<input
 				type='text'
@@ -44,9 +41,7 @@ const Form = (props) => {
 				onChange={handleChange}
 			/>
 			<br />
-			<label id='time' for='time'>
-				Time
-			</label>
+			<label id='time'>Time</label>
 			<br />
 			<input
 				type='text'
@@ -56,7 +51,12 @@ const Form = (props) => {
 				onChange={handleChange}
 			/>
 			<br />
-            <input id='createButton' type='submit' value={props.label} />
+			<input type='radio' id='fave-yes' name='favorite' value={true} />
+			<label id='fave'>Favorite</label>
+			<input type='radio' id='fave-no' name='favorite' value={false} />
+			<label id='fave'>Not Favorite</label>
+            <br />
+			<input id='createButton' type='submit' value={props.label} />
 		</form>
 	);
 };
