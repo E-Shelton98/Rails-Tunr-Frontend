@@ -5,8 +5,7 @@ const Form = (props) => {
 
 	//handleSubmit function to lift form input data to App.js
 	const handleSubmit = (event) => {
-        event.preventDefault()
-        console.log('this is formData: ', formData);
+		console.log('this is formData: ', formData);
 		//Submit to App's desired function
 		props.handleSubmit(formData);
 		//push back up to display section.
@@ -55,7 +54,7 @@ const Form = (props) => {
 			<label id='fave'>Favorite</label>
 			<input type='radio' id='fave-no' name='favorite' value={false} />
 			<label id='fave'>Not Favorite</label>
-            <br />
+			<br />
 			<input id='createButton' type='submit' value={props.label} />
 		</form>
 	);
