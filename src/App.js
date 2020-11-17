@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import DisplaySongs from './components/DisplaySongs';
+import Favorites from './components/Favorites';
 import Form from './components/Form';
 import './App.css';
 
@@ -9,18 +10,20 @@ function App() {
 	const url = 'https://rails-tunr-api.herokuapp.com';
 
 	//State for songs array in playlist
-	const [songs, setSongs] = React.useState([]);
+  const [songs, setSongs] = React.useState([]);
+  //State for favorite songs list
+  const [favorites, setFavorites] = React.useState([])
 
 	//Empty Song Object for form
 	const emptySong = {
 		name: '',
 		artist: '',
-    time: '',
-    favorite: false
+		time: '',
+		favorite: false,
 	};
 
-	/////////////////////////////////////////////////////////////////////////////
-	/////////////////////////////////////////////////////////////////////////////
+	/*///////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////*/
 
 	//getSongs function to fetch songs from heroku backend.
 	const getSongs = () => {
@@ -61,8 +64,18 @@ function App() {
 		});
 	};
 
-	///////////////////////////////////////////////////////////////////////////////
-	///////////////////////////////////////////////////////////////////////////////
+	const handleFaveToggle = (song) => {
+		const favoriteSongs = [...favorites];
+		const songIndex = favoriteSongs.indexOf(song);
+
+		songIndex > -1
+			? favoriteSongs.splice(songIndex, 1)
+			: favoriteSongs.push(song);
+		setFavorites(favoriteSongs);
+	};
+
+	/////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////
 
 	//Return App Components to build webpage
 	return (
@@ -70,7 +83,7 @@ function App() {
 			<header>
 				<h1 id='head-title'>Tunr.</h1>
 				<h2 id='head-subtitle'>For all your playlist needs</h2>
-				<hr id='red-divider' />
+				<hr id='head-divider' />
 			</header>
 			<main>
 				<div id='playlist-div'>
@@ -79,10 +92,11 @@ function App() {
 						exact
 						path='/'
 						render={(rp) => (
-							<DisplaySongs {...rp} songs={songs} removeSong={removeSong} />
+							<DisplaySongs {...rp} songs={songs} removeSong={removeSong} onFaveToggle={handleFaveToggle} />
 						)}
 					/>
 				</div>
+				<Favorites favorites={favorites} onFaveToggle={handleFaveToggle} />
 				<Route
 					exact
 					path='/'
