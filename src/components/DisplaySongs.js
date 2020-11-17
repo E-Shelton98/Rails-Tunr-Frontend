@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './DisplaySongs.css';
 const DisplaySongs = (props) => {
 	let songs = props.songs;
 	console.log('DisplaySongs songs: ', songs);
@@ -11,23 +11,22 @@ const DisplaySongs = (props) => {
 					{songs.map((song) => (
 						<article>
 							<section className='song-title'>{song.name}</section>
-							<section>{song.time}</section>
-							<section>{song.artist}</section>
-							<section
-								className='delete'
-								onClick={() => {
-									props.removeSong(song);
-									props.history.push('/');
-								}}>
-								X
-							</section>
-							<button
-								onClick={() => {
-									props.onFaveToggle(song);
-									props.history.push('/');
-								}}>
-								Favorite
-							</button>
+							<section className='song-time'>{song.time}</section>
+							<section className='song-artist'>{song.artist}</section>
+							<div className='song-buttons'>
+								<button className='song-delete'
+									onClick={() => {
+										props.removeSong(song);
+										props.history.push('/');
+									}}>Delete</button>
+								<button className='song-favorite'
+									onClick={() => {
+										props.onFaveToggle(song);
+										props.history.push('/');
+									}}>
+									Favorite
+								</button>
+							</div>
 						</article>
 					))}
 				</div>

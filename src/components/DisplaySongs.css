@@ -1,1 +1,30 @@
+#song-list article {
+    display: grid;
+    grid-template-rows: 1fr, 1fr;
+    grid-template-columns: 1fr, 1fr;
+}
 
+section.song-title {
+    grid-row: 1;
+    color: lightgreen;
+    padding-left: 10px;
+}
+
+section.song-artist {
+    text-align: right;
+    padding-right: 10px;
+    color: lightskyblue;
+}
+
+section.song-time {
+    grid-row: 2;
+    grid-column: 1;
+    padding-left: 10px;
+}
+
+div.song-buttons {
+    grid-row: 2;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+}
