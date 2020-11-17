@@ -13,6 +13,15 @@ const DisplaySongs = (props) => {
                             <section className='song-title'>{song.name}</section>
                             <section>{song.time}</section>
                             <section>{song.artist}</section>
+                            <section
+                                className='delete'
+                                onClick={() => {
+                                    props.removeSong(song)
+                                    props.history.push('/')
+                                    console.log(song)
+                                }}>
+                                    X
+                                </section>
                         </article>
                     ))}
                 </div>

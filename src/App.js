@@ -51,7 +51,7 @@ function App() {
 
 	//deleteSong Function for deleting a song from playlist
 	const removeSong = (song) => {
-		fetch(url + '/song/' + song._id, {
+		fetch(url + '/songs/' + song.id, {
 			method: 'delete',
 			headers: {
 				'Content-Type': 'application/json',
